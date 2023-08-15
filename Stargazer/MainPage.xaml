@@ -2,12 +2,50 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Stargazer.MainPage">
+    x:Class="Stargazer.MainPage"
+    
+    BackgroundColor="#121212">
+
+    <ContentPage.Resources>
+        <Style
+            x:Key="ButtonStyle"
+            TargetType="Button">
+
+            <Setter
+                Property="BackgroundColor"
+                Value="#459F88" />
+
+            <Setter
+                Property="TextColor"
+                Value="White" />
+            
+        </Style>
+
+        <Style
+            x:Key="PrimaryLabelStyle"
+            TargetType="Label">
+
+            <Setter
+                Property="TextColor"
+                Value="White" />
+
+        </Style>
+
+        <Style
+            x:Key="SecondaryLabelStyle"
+            TargetType="Label">
+
+            <Setter
+                Property="TextColor"
+                Value="#B0B0B0" />
+
+        </Style>
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
-            Padding="30,0"
+            Padding="30,30"
             VerticalOptions="Center">
 
             <Image
@@ -17,12 +55,15 @@
                 HorizontalOptions="Center" />
 
             <Label
+                Style="{StaticResource PrimaryLabelStyle}"
                 Text="Hello, World!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
+                Margin="0,-15,0,15"
+                Style="{StaticResource SecondaryLabelStyle}"
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
@@ -31,10 +72,10 @@
 
             <Button
                 x:Name="CounterBtn"
+                Style="{StaticResource ButtonStyle}"
                 Text="Click me"
                 SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                Clicked="OnCounterClicked" />
 
         </VerticalStackLayout>
     </ScrollView>
