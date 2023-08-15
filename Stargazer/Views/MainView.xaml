@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:Stargazer.ViewModels"
     x:Class="Stargazer.Views.MainView"
-    
     BackgroundColor="#121212">
 
     <ContentPage.BindingContext>
@@ -16,8 +15,12 @@
             x:Key="ButtonStyle"
             TargetType="Button">
 
-            <Setter Property="BackgroundColor" Value="#459F88" />
-            <Setter Property="TextColor" Value="White" />
+            <Setter
+                Property="BackgroundColor"
+                Value="#459F88" />
+            <Setter
+                Property="TextColor"
+                Value="White" />
 
         </Style>
 
@@ -25,10 +28,18 @@
             x:Key="PrimaryLabelStyle"
             TargetType="Label">
 
-            <Setter Property="FontFamily" Value="SFProDisplayMedium" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="FontSize" Value="30" />
-            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter
+                Property="FontFamily"
+                Value="SFProDisplayMedium" />
+            <Setter
+                Property="TextColor"
+                Value="White" />
+            <Setter
+                Property="FontSize"
+                Value="30" />
+            <Setter
+                Property="FontAttributes"
+                Value="Bold" />
 
         </Style>
 
@@ -36,58 +47,70 @@
             x:Key="SecondaryLabelStyle"
             TargetType="Label">
 
-            <Setter Property="FontFamily" Value="SFProDisplayRegular" />
-            <Setter Property="TextColor" Value="#B0B0B0" />
-            <Setter Property="FontSize" Value="20" />
+            <Setter
+                Property="FontFamily"
+                Value="SFProDisplayRegular" />
+            <Setter
+                Property="TextColor"
+                Value="#B0B0B0" />
+            <Setter
+                Property="FontSize"
+                Value="20" />
 
         </Style>
     </ContentPage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout
-            VerticalOptions="Start">
+    <RefreshView
+        IsRefreshing="{Binding IsLoading}"
+        Command="{Binding RefreshCommand}"
+        RefreshColor="#459F88">
+        
+        <ScrollView>
+            <VerticalStackLayout
+                VerticalOptions="Start">
 
-            <Grid
-                HeightRequest="400"
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
+                <Grid
+                    HeightRequest="400"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
 
-                <Image
-                    Aspect="Center"
-                    Source="{Binding ImageSource}" />
+                    <Image
+                        Aspect="Center"
+                        Source="{Binding ImageSource}" />
 
-                <ActivityIndicator
-                    Color="#459F88"
-                    IsVisible="{Binding IsLoading}"
-                    IsRunning="{Binding IsLoading}" />
-            </Grid>
+                    <ActivityIndicator
+                        Color="#459F88"
+                        IsVisible="{Binding IsLoading}"
+                        IsRunning="{Binding IsLoading}" />
+                </Grid>
 
-            <Grid
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
-                
-                <VerticalStackLayout
-                    HorizontalOptions="Start"
-                    Spacing="15"
-                    Padding="30,30,30,60">
+                <Grid
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
 
-                    <Label
-                        Style="{StaticResource PrimaryLabelStyle}"
-                        Text="{Binding Title}" />
+                    <VerticalStackLayout
+                        HorizontalOptions="Start"
+                        Spacing="15"
+                        Padding="30,30,30,60">
 
-                    <Label
-                        Style="{StaticResource SecondaryLabelStyle}"
-                        Text="{Binding Description}" />
+                        <Label
+                            Style="{StaticResource PrimaryLabelStyle}"
+                            Text="{Binding Title}" />
 
-                </VerticalStackLayout>
+                        <Label
+                            Style="{StaticResource SecondaryLabelStyle}"
+                            Text="{Binding Description}" />
 
-                <ActivityIndicator
-                    Color="#459F88"
-                    IsVisible="{Binding IsLoading}"
-                    IsRunning="{Binding IsLoading}" />
-            </Grid>
+                    </VerticalStackLayout>
 
-        </VerticalStackLayout>
-    </ScrollView>
+                    <ActivityIndicator
+                        Color="#459F88"
+                        IsVisible="{Binding IsLoading}"
+                        IsRunning="{Binding IsLoading}" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
 
 </ContentPage>

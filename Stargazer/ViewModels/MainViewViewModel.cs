@@ -52,9 +52,11 @@ namespace Stargazer.ViewModels
             }
         }
 
+        public Command RefreshCommand { get; }
+
         public MainViewViewModel()
         {
-
+            RefreshCommand = new Command(OnLoad);
         }
 
         public async void OnLoad()
