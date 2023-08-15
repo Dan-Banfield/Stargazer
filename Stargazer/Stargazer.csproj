@@ -55,4 +55,10 @@
 	  <Folder Include="Resources\Images\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Views\MainView.xaml.cs">
+	    <DependentUpon>MainView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
 </Project>
