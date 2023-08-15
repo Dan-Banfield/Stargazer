@@ -60,20 +60,30 @@
                     IsRunning="{Binding IsLoading}" />
             </Grid>
 
-            <VerticalStackLayout
-                HorizontalOptions="Start"
-                Spacing="25"
-                Padding="30,30">
+            <Grid
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                
+                <VerticalStackLayout
+                    HorizontalOptions="Start"
+                    Spacing="25"
+                    Padding="30,30,30,60">
 
-                <Label
-                    Style="{StaticResource PrimaryLabelStyle}"
-                    Text="{Binding Title}" />
+                    <Label
+                        Style="{StaticResource PrimaryLabelStyle}"
+                        Text="{Binding Title}" />
 
-                <Label
-                    Style="{StaticResource SecondaryLabelStyle}" 
-                    Text="{Binding Description}"/>
+                    <Label
+                        Style="{StaticResource SecondaryLabelStyle}"
+                        Text="{Binding Description}" />
 
-            </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <ActivityIndicator
+                    Color="#459F88"
+                    IsVisible="{Binding IsLoading}"
+                    IsRunning="{Binding IsLoading}" />
+            </Grid>
 
         </VerticalStackLayout>
     </ScrollView>

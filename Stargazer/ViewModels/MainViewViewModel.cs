@@ -1,8 +1,10 @@
-﻿namespace Stargazer.ViewModels
+﻿using Stargazer.API;
+
+namespace Stargazer.ViewModels
 {
     public class MainViewViewModel : BindableObject
     {
-        private bool isLoading = true;
+        private bool isLoading = false;
         public bool IsLoading
         {
             get => isLoading;
@@ -14,7 +16,7 @@
             }
         }
 
-        private string title = "A Triply Glowing Night Sky over Iceland";
+        private string title = "";
         public string Title
         {
             get => title;
@@ -26,7 +28,7 @@
             }
         }
 
-        private string imageSource = "https://apod.nasa.gov/apod/image/2308/TripleIceland_Zarzycka_1080.jpg";
+        private string imageSource = "";
         public string ImageSource
         {
             get => imageSource;
@@ -38,7 +40,7 @@
             }
         }
 
-        private string description = "Some long description.";
+        private string description = "";
         public string Description
         {
             get => description;
@@ -46,12 +48,29 @@
             set
             {
                 description = value;
-                OnPropertyChanged(nameof(description));
+                OnPropertyChanged(nameof(Description));
             }
         }
 
         public MainViewViewModel()
         {
+
+        }
+
+        public async void OnLoad()
+        {
+            IsLoading = true;
+            await GetDataAsync();
+            IsLoading = false;
+        }
+
+        private async Task GetDataAsync()
+        {
+            APIResposne apiResponse = await APIManager.GetAPIResponseAsync();
+
+            Title = apiResponse.title;
+            Description = apiResponse.explanation;
+            ImageSource = apiResponse.hdurl;
         }
     }
 }
