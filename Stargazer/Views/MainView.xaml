@@ -25,8 +25,9 @@
             x:Key="PrimaryLabelStyle"
             TargetType="Label">
 
+            <Setter Property="FontFamily" Value="SFProDisplayMedium" />
             <Setter Property="TextColor" Value="White" />
-            <Setter Property="FontSize" Value="32" />
+            <Setter Property="FontSize" Value="30" />
             <Setter Property="FontAttributes" Value="Bold" />
 
         </Style>
@@ -35,8 +36,9 @@
             x:Key="SecondaryLabelStyle"
             TargetType="Label">
 
+            <Setter Property="FontFamily" Value="SFProDisplayRegular" />
             <Setter Property="TextColor" Value="#B0B0B0" />
-            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontSize" Value="20" />
 
         </Style>
     </ContentPage.Resources>
@@ -66,7 +68,7 @@
                 
                 <VerticalStackLayout
                     HorizontalOptions="Start"
-                    Spacing="25"
+                    Spacing="15"
                     Padding="30,30,30,60">
 
                     <Label

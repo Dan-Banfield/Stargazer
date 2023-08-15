@@ -14,6 +14,8 @@ namespace Stargazer
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("SFProDisplay-Medium", "SFProDisplayMedium");
+                    fonts.AddFont("SFProDisplay-Regular", "SFProDisplayRegular");
                 })
                 .ConfigureLifecycleEvents(events =>
                 {
