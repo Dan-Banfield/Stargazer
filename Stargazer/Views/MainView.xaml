@@ -62,6 +62,7 @@
     </ContentPage.Resources>
 
     <RefreshView
+        BackgroundColor="#121212"
         IsRefreshing="{Binding Refreshing}"
         Command="{Binding RefreshCommand}"
         RefreshColor="#459F88">
