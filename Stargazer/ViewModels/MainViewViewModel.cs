@@ -16,6 +16,18 @@ namespace Stargazer.ViewModels
             }
         }
 
+        private bool refreshing = false;
+        public bool Refreshing
+        {
+            get => refreshing;
+
+            set
+            {
+                refreshing = value;
+                OnPropertyChanged(nameof(Refreshing));
+            }
+        }
+
         private string title = "";
         public string Title
         {
@@ -53,17 +65,34 @@ namespace Stargazer.ViewModels
         }
 
         public Command RefreshCommand { get; }
+        public Command ImageTapCommand { get; }
 
         public MainViewViewModel()
         {
-            RefreshCommand = new Command(OnLoad);
+            RefreshCommand = new Command(OnRefresh);
+            ImageTapCommand = new Command(OnImageTap);
         }
 
-        public async void OnLoad()
+        private async void OnLoad()
         {
             IsLoading = true;
             await GetDataAsync();
             IsLoading = false;
+        }
+
+        private async void OnRefresh()
+        {
+            Refreshing = true;
+            IsLoading = true;
+            await GetDataAsync();
+            IsLoading = false;
+            Refreshing = false;
+        }
+
+        private async void OnImageTap()
+        {
+            if (!string.IsNullOrEmpty(ImageSource))
+                await Launcher.OpenAsync(ImageSource);
         }
 
         private async Task GetDataAsync()

@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:Stargazer.ViewModels"
+    xmlns:local="clr-namespace:Stargazer;assembly=Stargazer"
     x:Class="Stargazer.Views.MainView"
     BackgroundColor="#121212">
 
@@ -61,7 +62,7 @@
     </ContentPage.Resources>
 
     <RefreshView
-        IsRefreshing="{Binding IsLoading}"
+        IsRefreshing="{Binding Refreshing}"
         Command="{Binding RefreshCommand}"
         RefreshColor="#459F88">
         
@@ -76,7 +77,12 @@
 
                     <Image
                         Aspect="Center"
-                        Source="{Binding ImageSource}" />
+                        Source="{Binding ImageSource}">
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ImageTapCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
 
                     <ActivityIndicator
                         Color="#459F88"
