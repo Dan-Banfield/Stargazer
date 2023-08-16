@@ -103,7 +103,7 @@ namespace Stargazer.ViewModels
 
                 Title = apiResponse.title;
                 Description = apiResponse.explanation;
-                ImageSource = apiResponse.hdurl;
+                ImageSource = apiResponse.url;
             }
             catch (APIException apiException)
             {
