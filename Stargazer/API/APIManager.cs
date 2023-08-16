@@ -9,14 +9,31 @@ namespace Stargazer.API
 
         public static async Task<APIResposne> GetAPIResponseAsync()
         {
-            using (HttpClient httpClient = new HttpClient())
+            try
             {
-                using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(API_ENDPOINT + API_KEY))
+                using (HttpClient httpClient = new HttpClient())
                 {
-                    Stream jsonStream = await httpResponseMessage.Content.ReadAsStreamAsync();
-                    return await JsonSerializer.DeserializeAsync<APIResposne>(jsonStream);
+                    using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(API_ENDPOINT + API_KEY))
+                    {
+                        if (!httpResponseMessage.IsSuccessStatusCode)
+                            httpResponseMessage.EnsureSuccessStatusCode();
+
+                        Stream jsonStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+                        return await JsonSerializer.DeserializeAsync<APIResposne>(jsonStream);
+                    }
                 }
             }
+            catch (Exception exception)
+            {
+                throw new APIException("Error fetching data. Check your internet connection.", exception);
+            }
+        }
+    }
+
+    public class APIException : Exception
+    {
+        public APIException(string message, Exception innerException) : base(message, innerException)
+        {
         }
     }
 }

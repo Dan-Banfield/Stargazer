@@ -97,11 +97,19 @@ namespace Stargazer.ViewModels
 
         private async Task GetDataAsync()
         {
-            APIResposne apiResponse = await APIManager.GetAPIResponseAsync();
+            try
+            {
+                APIResposne apiResponse = await APIManager.GetAPIResponseAsync();
 
-            Title = apiResponse.title;
-            Description = apiResponse.explanation;
-            ImageSource = apiResponse.hdurl;
+                Title = apiResponse.title;
+                Description = apiResponse.explanation;
+                ImageSource = apiResponse.hdurl;
+            }
+            catch (APIException apiException)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error!", apiException.Message, "OK");
+                Application.Current.Quit();
+            }
         }
     }
 }
