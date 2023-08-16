@@ -65,58 +65,59 @@
         IsRefreshing="{Binding Refreshing}"
         Command="{Binding RefreshCommand}"
         RefreshColor="#459F88">
-        
-        <ScrollView>
-            <VerticalStackLayout
-                VerticalOptions="Start">
 
-                <Grid
-                    HeightRequest="400"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center">
+        <Grid
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            
+            <ScrollView>
+                <VerticalStackLayout
+                    Spacing="15"
+                    VerticalOptions="Start"
+                    Margin="30,60,30,60">
 
-                    <Image
-                        Aspect="Center"
-                        Source="{Binding ImageSource}">
 
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ImageTapCommand}" />
-                        </Image.GestureRecognizers>
-                    </Image>
+                    <Frame
+                        BorderColor="Transparent"
+                        BackgroundColor="Transparent"
+                        HeightRequest="350"
+                        IsClippedToBounds="True"
+                        Padding="0"
+                        Margin="0"
+                        CornerRadius="30">
+                        
+                        <Image
+                            Aspect="AspectFill"
+                            Source="{Binding ImageSource}">
 
-                    <ActivityIndicator
-                        Color="#459F88"
-                        IsVisible="{Binding IsLoading}"
-                        IsRunning="{Binding IsLoading}" />
-                </Grid>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding ImageTapCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
 
-                <Grid
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center">
+                    <Label
+                        Margin="0,5,0,-5"
+                        Style="{StaticResource PrimaryLabelStyle}"
+                        Text="{Binding Title}" />
 
-                    <VerticalStackLayout
-                        HorizontalOptions="Start"
-                        Spacing="15"
-                        Padding="30,30,30,60">
+                    <Label
+                        Style="{StaticResource SecondaryLabelStyle}"
+                        Text="{Binding Description}" />
 
-                        <Label
-                            Style="{StaticResource PrimaryLabelStyle}"
-                            Text="{Binding Title}" />
+                </VerticalStackLayout>
+            </ScrollView>
 
-                        <Label
-                            Style="{StaticResource SecondaryLabelStyle}"
-                            Text="{Binding Description}" />
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Color="#459F88"
+                IsVisible="{Binding IsLoading}"
+                IsEnabled="{Binding IsLoading}"
+                IsRunning="{Binding IsLoading}" />
 
-                    </VerticalStackLayout>
-
-                    <ActivityIndicator
-                        Color="#459F88"
-                        IsVisible="{Binding IsLoading}"
-                        IsRunning="{Binding IsLoading}" />
-                </Grid>
-
-            </VerticalStackLayout>
-        </ScrollView>
+        </Grid>
     </RefreshView>
 
 </ContentPage>

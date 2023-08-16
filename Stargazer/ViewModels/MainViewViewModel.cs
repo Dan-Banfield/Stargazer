@@ -73,7 +73,7 @@ namespace Stargazer.ViewModels
             ImageTapCommand = new Command(OnImageTap);
         }
 
-        private async void OnLoad()
+        public async void OnLoad()
         {
             IsLoading = true;
             await GetDataAsync();
